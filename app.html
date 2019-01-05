@@ -14,127 +14,9 @@
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
         <script>
-          // On domready, fetch and parse the json file that contains the
-          // status of our indexers and use it to render a useful table for
-          // the user.
-          // url = "https://s3.us-west-2.amazonaws.com/bitgo-indexer-health/sample.json";
-          // $(function() {
-          //   $.getJSON({
-          //       url: url,
-          //       dataType: "jsonp",
-          //       success: function( data ) {
-          //           console.log( data );
-          //       }
-          //   });
 
-          $(function() {
-            var data = {
-              "metadata": {
-                "dateFetched": "2019-01-09 at 4:01PM PST"
-              },
-              "indexers": {
-                "BTC": {
-                  "name": "Bitcoin",
-                  "icon": ",",
-                  "environments": [{
-                    "network": "MainNet",
-                    "status": true,
-                    "latestBlock": 23881213,
-                    "blocksBehind": 0,
-                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
-                  },
-                  {
-                    "network": "TestNet",
-                    "status": false,
-                    "latestBlock": 941213,
-                    "blocksBehind": "21 blocks",
-                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
-                  }]
-                },
-                "BTG": {
-                  "name": "Bitcoin Gold",
-                  "icon": ",",
-                  "environments": [{
-                    "network": "MainNet",
-                    "status": true,
-                    "latestBlock": 771213,
-                    "blocksBehind": 0,
-                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
-                  },
-                  {
-                    "network": "TestNet",
-                    "status": true,
-                    "latestBlock": 345213,
-                    "blocksBehind": 0,
-                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
-                  }]
-                },
-                "BCH": {
-                  "name": "Bitcoin Cash",
-                  "icon": ",",
-                  "environments": [{
-                    "network": "MainNet",
-                    "status": true,
-                    "latestBlock": 81213,
-                    "blocksBehind": 0,
-                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
-                  },
-                  {
-                    "network": "TestNet",
-                    "status": true,
-                    "latestBlock": 5343,
-                    "blocksBehind": 0,
-                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
-                  }]
-                },
-                "LTC": {
-                  "name": "Litecoin",
-                  "icon": ",",
-                  "environments": [{
-                    "network": "MainNet",
-                    "status": true,
-                    "latestBlock": 4541213,
-                    "blocksBehind": 0,
-                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
-                  },
-                  {
-                    "network": "TestNet",
-                    "status": true,
-                    "latestBlock": 2343,
-                    "blocksBehind": 0,
-                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
-                  }]
-                },
-                "ZEC": {
-                  "name": "ZCash",
-                  "icon": ",",
-                  "environments": [{
-                    "network": "MainNet",
-                    "status": true,
-                    "latestBlock": 771213,
-                    "blocksBehind": 0,
-                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
-                  },
-                  {
-                    "network": "TestNet",
-                    "status": false,
-                    "latestBlock": 53e43,
-                    "blocksBehind": "8 blocks",
-                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
-                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
-                  }]
-                }
-              }
-            };
+          // Parse indexer state data from s3
+          function handleIndexerStateDataFromS3(data){
 
             // Update the date last updated span
             $("#js-lastUpdated").html(data.metadata.dateFetched);
@@ -169,8 +51,19 @@
                 $('#js-statusTable').append(tr);
               });
             });
+          }
 
+          // On domready, fetch and parse the json file that contains the
+          // status of our indexers and use it to render a useful table for
+          // the user.
+          url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health/sample.json";
+          $(function() {
+            $.getJSON({
+                url: url,
+                success: handleIndexerStateDataFromS3,
+            });
           });
+
         </script>
 
         <!-- App css -->
