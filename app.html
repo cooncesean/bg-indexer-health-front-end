@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+        <title>BitGo - Indexer Health Dashboard</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script>
+          // On domready, fetch and parse the json file that contains the
+          // status of our indexers and use it to render a useful table for
+          // the user.
+          // url = "https://s3.us-west-2.amazonaws.com/bitgo-indexer-health/sample.json";
+          // $(function() {
+          //   $.getJSON({
+          //       url: url,
+          //       dataType: "jsonp",
+          //       success: function( data ) {
+          //           console.log( data );
+          //       }
+          //   });
+
+          $(function() {
+            var data = {
+              "metadata": {
+                "dateFetched": "2019-01-09 at 4:01PM PST"
+              },
+              "indexers": {
+                "BTC": {
+                  "name": "Bitcoin",
+                  "icon": ",",
+                  "environments": [{
+                    "network": "MainNet",
+                    "status": true,
+                    "latestBlock": 23881213,
+                    "blocksBehind": 0,
+                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
+                  },
+                  {
+                    "network": "TestNet",
+                    "status": false,
+                    "latestBlock": 941213,
+                    "blocksBehind": "21 blocks",
+                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+                  }]
+                },
+                "BTG": {
+                  "name": "Bitcoin Gold",
+                  "icon": ",",
+                  "environments": [{
+                    "network": "MainNet",
+                    "status": true,
+                    "latestBlock": 771213,
+                    "blocksBehind": 0,
+                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
+                  },
+                  {
+                    "network": "TestNet",
+                    "status": true,
+                    "latestBlock": 345213,
+                    "blocksBehind": 0,
+                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+                  }]
+                },
+                "BCH": {
+                  "name": "Bitcoin Cash",
+                  "icon": ",",
+                  "environments": [{
+                    "network": "MainNet",
+                    "status": true,
+                    "latestBlock": 81213,
+                    "blocksBehind": 0,
+                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
+                  },
+                  {
+                    "network": "TestNet",
+                    "status": true,
+                    "latestBlock": 5343,
+                    "blocksBehind": 0,
+                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+                  }]
+                },
+                "LTC": {
+                  "name": "Litecoin",
+                  "icon": ",",
+                  "environments": [{
+                    "network": "MainNet",
+                    "status": true,
+                    "latestBlock": 4541213,
+                    "blocksBehind": 0,
+                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
+                  },
+                  {
+                    "network": "TestNet",
+                    "status": true,
+                    "latestBlock": 2343,
+                    "blocksBehind": 0,
+                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+                  }]
+                },
+                "ZEC": {
+                  "name": "ZCash",
+                  "icon": ",",
+                  "environments": [{
+                    "network": "MainNet",
+                    "status": true,
+                    "latestBlock": 771213,
+                    "blocksBehind": 0,
+                    "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTC"
+                  },
+                  {
+                    "network": "TestNet",
+                    "status": false,
+                    "latestBlock": 53e43,
+                    "blocksBehind": "8 blocks",
+                    "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+                    "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+                  }]
+                }
+              }
+            };
+
+            // Update the date last updated span
+            $("#js-lastUpdated").html(data.metadata.dateFetched);
+
+            // Iterate over each coin in the data structure and build the table
+            $.each( data.indexers, function( key, coinData ) {
+              var coinName = coinData.name;
+              var iconPath = coinData.icon;
+
+              // Iterate over each environment in the data dict and create table
+              // rows to be appended to the table
+              $.each( coinData.environments, function( index, environmentData ) {
+                // Build the tr and append tds to it
+                var tr = $('<tr>');
+
+                // Determine whether we need to alert the user
+                var statusTableCell = $('<td><i class="mdi mdi-checkbox-marked-circle"></i></td>');
+                if( !environmentData.status ){
+                  statusTableCell = $('<td><i class="mdi mdi-alert-circle"></i></td>');
+                  tr.css('background', 'mistyrose');
+                }
+
+                tr.append($('<td>'+coinData.name+'</td>'));
+                tr.append($('<td>'+environmentData.network+'</td>'));
+                tr.append(statusTableCell);
+                tr.append($('<td class="ta-r">'+environmentData.latestBlock+'</td>'));
+                tr.append($('<td class="ta-r">'+environmentData.blocksBehind+'</td>'));
+                tr.append($('<td class="ta-r"><a href="'+environmentData.bgURL+'"><i class="mdi mdi-link"></i></a></td>'));
+                tr.append($('<td class="ta-r"><a href="'+environmentData.publicURL+'"><i class="mdi mdi-link"></i></a></td>'));
+
+                // Append the tr to the table
+                $('#js-statusTable').append(tr);
+              });
+            });
+
+          });
+        </script>
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <style>
+        .ta-r{
+          text-align: right;
+        }
+        i{
+          font-size: 24px !important;
+        }
+        .mdi-checkbox-marked-circle{
+          color: limegreen !important;
+        }
+        .mdi-alert-circle{
+          color: red !important;
+        }
+        .wrapper{
+          padding-top: 70px !important;
+        }
+        </style>
+    </head>
+
+    <body>
+         <!-- Navigation Bar-->
+         <header id="topnav">
+             <div class="topbar-main">
+                 <div class="container-fluid">
+
+                     <!-- Logo container-->
+                     <div class="logo">
+                         <a href="index.html" class="logo">
+                           <img src="assets/images/indexer-health-logo.png" height="34" class="logo-large" />
+                         </a>
+
+                     </div>
+                     <!-- End Logo container-->
+
+
+                     <div class="menu-extras topbar-custom float-right mt-4" style="color: #fff; font-size: 11px;">
+                       <!-- Updated every 5 minutes and verified against public block explorers. -->
+                       Last updated <span id="js-lastUpdated"></span>.
+                     </div>
+                     <!-- end menu-extras -->
+
+                     <div class="clearfix"></div>
+
+                 </div> <!-- end container -->
+             </div>
+             <!-- end topbar-main -->
+
+             <!-- MENU Start -->
+             <div class="navbar-custom">
+                 <div class="container-fluid">
+                     <div id="navigation">
+
+                     </div> <!-- end #navigation -->
+                 </div> <!-- end container -->
+             </div> <!-- end navbar-custom -->
+         </header>
+         <!-- End Navigation Bar-->
+
+         <!-- Main content + table Start -->
+         <div class="wrapper">
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-lg-12">
+                         <div class="card m-b-30">
+                             <div class="card-body">
+                                 <table id="js-statusTable" class="table">
+                                     <thead class="thead-default">
+                                     <tr>
+                                         <th>Indexer</th>
+                                         <th>Network</th>
+                                         <th>Status</th>
+                                         <th class="ta-r">Latest Block</th>
+                                         <th class="ta-r">Blocks Behind</th>
+                                         <th class="ta-r" style="width: 110px;">BitGo URL</th>
+                                         <th class="ta-r" style="width:170px;">Block Explorer URL</th>
+                                     </tr>
+                                     </thead>
+                                     <tbody>
+                                        <!-- dynamically populated -->
+                                     </tbody>
+                                 </table>
+
+                             </div>
+                         </div>
+                     </div> <!-- end col -->
+
+                 </div> <!-- end row -->
+
+             </div> <!-- end container -->
+         </div>
+         <!-- end wrapper -->
+
+
+         <!-- Footer
+         <footer class="footer">
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-12">
+                         © 2019 BitGo - Crafted with <i class="mdi mdi-heart text-danger"></i>.
+                     </div>
+                 </div>
+             </div>
+         </footer>
+        End Footer -->
+
+       </body>
+   </html>
