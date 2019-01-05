@@ -10,7 +10,3 @@ A dead-simple web app that provides visibility into BitGo's indexer infrastructu
 
 # Motivation
 Indexers (and full nodes) can be flaky. If we want to provide world class support to our customers, we need better visibility into the health of our core infrastructure -- this is a step in that direction.
-
-# Screenshot
-
-![image](https://lh3.googleusercontent.com/FxiE91wfa7DGTZIYW-er4bq7lrbByIC_4qvGDfrb8aF9Z32bFZMAYY62lHEdoxbLAQ6hZKZQ-4Uc3uD52MhlFWUPnLf2DhaR_ITA_YSUfa7GV8GGfEVXRNSxc6kRXDt0oxVMF3ujD6n7_UFoatVyq0YmOuOEkidcG3lfQdWLcXxZEbkYhBCv0HbhF3iE5Hpil8YVxKfMrCpbtV-E81qEp7_-NQOBvO-JHGjiQhmmD49lRSxH0bokpRVn_bcJ0fJnL2zQeCQTQodE5qLh4AAa9cfHbvcPbUReV13NLyqC0vjRkKCk6dbkfOmsu7rjkYDDfNT5pqpCG5Weo93cOwmdhlQM0JNO47dQyDsESw7Eg4SUa3d9672_WGRSyKvpEE8LqMdIeMZB5UDyaUYglSE0JsApQZ12PbXXuDW0k5urbdiY1RhU9PyqeVGoYCdiHfuFLm3Erhj9lFQg8VlB_oHN9_MzyU4s9me7eD8cJaovmQHPIKXMTOjnhsNr98eTgUUvtNBsp1VF0LdQD4VOt-es6VmKbtreNUdkmg5vHV-1frdLxoSCPicFh0wXKxONn4q0d2if8MHp7nyGglqMt6hdUYrUPx_1AosPRfutzHavmaff20lxL9IJNAlni-votl5sNfilb5RW4I__Tp3zNTXbJevv-Q=w2402-h1238-no")
