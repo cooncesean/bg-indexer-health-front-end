@@ -48,8 +48,15 @@ function handleIndexerStateDataFromS3(data){
 // the user.
 url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health/latest.json";
 $(function() {
-  $.getJSON({
-    url: url,
-    success: handleIndexerStateDataFromS3,
-  });
+
+  // Wrap the call in a polling function so it re-fetches new json every min
+  // Note, the indexer state data (a JSON file on s3) is generated every 5 min
+  (function poll() {
+    $.getJSON({
+      url: url,
+      success: handleIndexerStateDataFromS3,
+      complete: setTimeout(function() {poll()}, 1000 * 60),
+    });
+
+  })();
 });
