@@ -22,6 +22,13 @@ function handleIndexerStateDataFromS3(data){
         tr.css('background', 'mistyrose');
       }
 
+      // For each coin, there are always two networks (MainNet + TestNet); The
+      // app should pair each coin with an icon that spans both rows
+      if( index == 0 ){
+          tr.append($('<td rowspan="2" style="width: 25px; vertical-align: middle;"><img src="'+coinData.icon+'" width="25" height="25" /></td>'));
+      }
+
+      // Append all indexer content to the table row
       tr.append($('<td>'+coinData.name+'</td>'));
       tr.append($('<td>'+environmentData.network+'</td>'));
       tr.append(statusTableCell);
