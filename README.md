@@ -24,3 +24,7 @@ python -m SimpleHTTPServer 8000
 ```
 
 This starts a local python server at that directory, which allows you to access `app.html` via `http://`. You can view the file at: `http://localhost:8000/app.html`, make local edits and reload the page.
+
+
+# Public URL
+This project is currently up and running at: http://bitgo-indexer-health-front-end.s3-website-us-west-2.amazonaws.com/
