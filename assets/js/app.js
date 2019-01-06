@@ -4,6 +4,10 @@ function handleIndexerStateDataFromS3(data){
   // Update the date last updated span
   $("#js-lastUpdated").html(data.metadata.dateFetched);
 
+  // Flush existing data in the table as the logic below appends new data into
+  // the table
+  $('#js-statusTable tbody').html('');
+
   // Iterate over each coin in the data structure and build the table
   $.each( data.indexers, function( key, coinData ) {
     var coinName = coinData.name;
@@ -52,6 +56,7 @@ $(function() {
   // Wrap the call in a polling function so it re-fetches new json every min
   // Note, the indexer state data (a JSON file on s3) is generated every 5 min
   (function poll() {
+    // Fetch indexer state from a JSON file on s3
     $.getJSON({
       url: url,
       success: handleIndexerStateDataFromS3,
