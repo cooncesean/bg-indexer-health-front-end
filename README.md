@@ -10,3 +10,6 @@ A dead-simple web app that provides visibility into BitGo's indexer infrastructu
 
 # Motivation
 Indexers (and full nodes) can be flaky. If we want to provide world class support to our customers, we need better visibility into the health of our core infrastructure -- this is a step in that direction.
+
+# References
+The paired, back-end project (the project that populates the JSON data that this project consumes) is available here: https://github.com/cooncesean/bg-indexer-heath-lambda. They were distinct enough that it didn't make a whole lot of sense to smush them together.
