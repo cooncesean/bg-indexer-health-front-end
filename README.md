@@ -13,3 +13,14 @@ Indexers (and full nodes) can be flaky. If we want to provide world class suppor
 
 # References
 The paired, back-end project (the project that populates the JSON data that this project consumes) is available here: https://github.com/cooncesean/bg-indexer-health-lambda. They were distinct enough that it didn't make a whole lot of sense to smush them together.
+
+# Local Development
+In order for the CORS loading of [the s3 JSON file](https://s3-us-west-2.amazonaws.com/bitgo-indexer-health/latest.json) (which represents the current state of our indexer infrastructure), you will need to load `app.html` via `http` (as opposed to loading it via `file:///`).
+
+On Mac, this is fairly straightforward; navigate to the project directory and run:
+
+```
+python -m SimpleHTTPServer 8000
+```
+
+This starts a local python server at that directory, which allows you to access `app.html` via `http://`. You can view the file at: `http://localhost:8000/app.html`, make local edits and reload the page.
