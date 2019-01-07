@@ -29,7 +29,7 @@ function handleIndexerStateDataFromS3(data){
       // For each coin, there are always two networks (MainNet + TestNet); The
       // app should pair each coin with an icon that spans both rows
       if( index == 0 ){
-          tr.append($('<td rowspan="2" style="width: 25px; vertical-align: middle;"><img src="'+coinData.icon+'" width="25" height="25" /></td>'));
+          tr.append($('<td rowspan="2" style="width: 25px; vertical-align: middle; background: white !important;"><img src="'+coinData.icon+'" width="25" height="25" /></td>'));
       }
 
       // Append all indexer content to the table row
