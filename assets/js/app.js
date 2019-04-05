@@ -105,7 +105,7 @@ function appendTableRow(key, coinData) {
   }
   // Iterate over each environment in the data dict and create table
   // cells to be appended to the table row
-  $.each(coinData.environments, function(index, environmentData) { 
+  $.each(coinData.environments, function(index, environmentData) {
     appendEnvironmentCell(environmentData, tr);
   });
 
@@ -131,7 +131,7 @@ function handleIndexerStateDataFromS3(data){
 // On domready, fetch and parse the json file that contains the
 // status of our indexers and use it to render a useful table for
 // the user.
-url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health-fork/latest.json";
+url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health/latest.json";
 $(function() {
   console.log('load');
 
