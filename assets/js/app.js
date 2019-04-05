@@ -84,10 +84,10 @@ function appendEnvironmentCell(envData, tr) {
 
 function appendCoinCell(key, coinData, tr) {
   var style = 'width: 125px; vertical-align: middle; background: white !important; text-align: center;';
-  var image = $('<img src="'+coinData.icon+'" width="80%" height="80%" style="margin-bottom: 1em;" />');
+  var image = $('<img src="'+coinData.icon+'" width="80em" height="80em" style="margin-top: 1em;" />');
   var td = $('<td style="'+style+'">');
+  td.append($('<b style="font-size: 20px; display: block;">'+key+'</b>'))
   td.append(image);
-  td.append($('<b>'+key+'</b>'))
   tr.append(td);
 }
 
@@ -131,22 +131,23 @@ function handleIndexerStateDataFromS3(data){
 // On domready, fetch and parse the json file that contains the
 // status of our indexers and use it to render a useful table for
 // the user.
-//url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health/latest.json";
-url = "http://localhost:8000/sample.json";
+url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health-fork/latest.json";
 $(function() {
   console.log('load');
 
   // Wrap the call in a polling function so it re-fetches new json every min
   // Note, the indexer state data (a JSON file on s3) is generated every 5 min
-  (function poll() {
+  function poll() {
     console.log('poll');
     // Fetch indexer state from a JSON file on s3
     $.getJSON({
       url: url,
       success: handleIndexerStateDataFromS3
     });
+  }
 
-  })();
+  setInterval(poll, 60000);
+  poll();
 });
 
 // vim: sw=2 ts=2
