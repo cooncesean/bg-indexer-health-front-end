@@ -21,6 +21,14 @@
         "blocksBehind": "21 blocks",
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 941213,
+        "blocksBehind": "21 blocks",
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "BTG": {
@@ -40,6 +48,14 @@
         "latestBlock": 345213,
         "blocksBehind": 0,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": true,
+        "latestBlock": 345213,
+        "blocksBehind": 0,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
@@ -61,6 +77,14 @@
         "blocksBehind": 0,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": true,
+        "latestBlock": 5343,
+        "blocksBehind": 0,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "LTC": {
@@ -81,6 +105,14 @@
         "blocksBehind": 0,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": true,
+        "latestBlock": 2343,
+        "blocksBehind": 0,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "ZEC": {
@@ -100,6 +132,14 @@
         "latestBlock": 53e43,
         "blocksBehind": "8 blocks",
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 53e43,
+        "blocksBehind": "8 blocks",
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     }
