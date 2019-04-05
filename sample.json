@@ -5,12 +5,12 @@
   "indexers": {
     "BTC": {
       "name": "Bitcoin",
-      "icon": ",",
+      "icon": "http://localhost:8000/assets/images/btc.png",
       "environments": [{
         "network": "MainNet",
         "status": true,
         "latestBlock": 23881213,
-        "blocksBehind": 0,
+        "referenceBlock": 23881213,
         "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTC"
       },
@@ -18,19 +18,27 @@
         "network": "TestNet",
         "status": false,
         "latestBlock": 941213,
-        "blocksBehind": "21 blocks",
+        "referenceBlock": 941219,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 941213,
+        "referenceBlock": 941216,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "BTG": {
       "name": "Bitcoin Gold",
-      "icon": ",",
+      "icon": "http://localhost:8000/assets/images/btc.png",
       "environments": [{
         "network": "MainNet",
         "status": true,
         "latestBlock": 771213,
-        "blocksBehind": 0,
+        "referenceBlock": 771213,
         "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTC"
       },
@@ -38,19 +46,27 @@
         "network": "TestNet",
         "status": true,
         "latestBlock": 345213,
-        "blocksBehind": 0,
+        "referenceBlock": 345213,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": true,
+        "latestBlock": 345213,
+        "referenceBlock": 345223,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "BCH": {
       "name": "Bitcoin Cash",
-      "icon": ",",
+      "icon": "http://localhost:8000/assets/images/bch.png",
       "environments": [{
         "network": "MainNet",
         "status": true,
         "latestBlock": 81213,
-        "blocksBehind": 0,
+        "referenceBlock": 81213,
         "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTC"
       },
@@ -58,19 +74,27 @@
         "network": "TestNet",
         "status": true,
         "latestBlock": 5343,
-        "blocksBehind": 0,
+        "referenceBlock": 5343,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": true,
+        "latestBlock": 5343,
+        "referenceBlock": 5343,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "LTC": {
       "name": "Litecoin",
-      "icon": ",",
+      "icon": "http://localhost:8000/assets/images/ltc.png",
       "environments": [{
         "network": "MainNet",
         "status": true,
         "latestBlock": 4541213,
-        "blocksBehind": 0,
+        "referenceBlock": 4541213,
         "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTC"
       },
@@ -78,19 +102,27 @@
         "network": "TestNet",
         "status": true,
         "latestBlock": 2343,
-        "blocksBehind": 0,
+        "referenceBlock": 2343,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": true,
+        "latestBlock": 2343,
+        "referenceBlock": 2343,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     },
     "ZEC": {
       "name": "ZCash",
-      "icon": ",",
+      "icon": "http://localhost:8000/assets/images/zec.png",
       "environments": [{
         "network": "MainNet",
         "status": true,
         "latestBlock": 771213,
-        "blocksBehind": 0,
+        "referenceBlock": 771213,
         "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTC"
       },
@@ -98,8 +130,154 @@
         "network": "TestNet",
         "status": false,
         "latestBlock": 53e43,
-        "blocksBehind": "8 blocks",
+        "referenceBlock": 53e43,
         "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      }]
+    },
+    "XRP": {
+      "name": "XRP",
+      "icon": "http://localhost:8000/assets/images/xrp.png",
+      "environments": [{
+        "network": "MainNet",
+        "status": true,
+        "latestBlock": 771213,
+        "referenceBlock": 771218,
+        "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTC"
+      },
+      {
+        "network": "TestNet",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      }]
+    },
+    "V1BTC": {
+      "name": "v1 btc",
+      "icon": "http://localhost:8000/assets/images/btc.png",
+      "environments": [{
+        "network": "MainNet",
+        "status": true,
+        "latestBlock": 771213,
+        "referenceBlock": 771213,
+        "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTC"
+      },
+      {
+        "network": "TestNet",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      }]
+    },
+    "DASH": {
+      "name": "DASH",
+      "icon": "http://localhost:8000/assets/images/dash.png",
+      "environments": [{
+        "network": "MainNet",
+        "status": true,
+        "latestBlock": 771213,
+        "referenceBlock": 771213,
+        "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTC"
+      },
+      {
+        "network": "TestNet",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      }]
+    },
+    "XLM": {
+      "name": "XLM",
+      "icon": "http://localhost:8000/assets/images/xlm.png",
+      "environments": [{
+        "network": "MainNet",
+        "status": false,
+        "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTC"
+      },
+      {
+        "network": "TestNet",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 53e43,
+        "referenceBlock": 53e43,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      }]
+    },
+    "BSV": {
+      "name": "BSV",
+      "icon": "http://localhost:8000/assets/images/bsv.png",
+      "environments": [{
+        "network": "MainNet",
+        "status": true,
+        "latestBlock": 771213,
+        "referenceBlock": 771233,
+        "bgURL": "https://www.bitgo.com/api/v2/btc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTC"
+      },
+      {
+        "network": "TestNet",
+        "status": false,
+        "latestBlock": 3383883,
+        "referenceBlock": 3383889,
+        "bgURL": "https://test.bitgo.com/api/v2/tbtc/public/block/latest",
+        "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
+      },
+      {
+        "network": "Dev",
+        "status": false,
+        "latestBlock": 7728882,
+        "referenceBlock": 7728882,
+        "bgURL": "https://webdev.bitgo.com/api/v2/tbtc/public/block/latest",
         "publicURL": "https://chain.so/api/v2/get_info/BTCTEST"
       }]
     }

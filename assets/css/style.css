@@ -43,6 +43,10 @@ File: Main Css File
 /* ==============
   General
 ===================*/
+.maxheight {
+  height: 100%;
+}
+
 body {
   background: #eff3f6;
   font-family: "Arimo", sans-serif;
@@ -133,7 +137,6 @@ code {
 }
 
 #wrapper {
-  height: 100%;
   overflow: hidden;
   width: 100%;
 }
