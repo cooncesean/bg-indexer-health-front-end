@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="maxheight">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,7 +40,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="maxheight">
 
     <!-- Navigation Bar-->
     <header id="topnav">
@@ -69,37 +69,30 @@
     <!-- End Navigation Bar-->
 
     <!-- Main content + table Start -->
-    <div class="wrapper">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card m-b-30">
-              <div class="card-body">
+    <div class="wrapper maxheight">
+      <div class="row col-lg-12">
+        <div class="container-fluid maxheight">
+          <div class="card m-b-30 maxheight">
+            <div class="card-body maxheight">
 
-                <table id="js-statusTable" class="table">
-                  <thead class="thead-default">
-                    <tr>
-                      <th colspan="2">Indexer</th>
-                      <th>Network</th>
-                      <th>Status</th>
-                      <th class="ta-r">Latest Block</th>
-                      <th class="ta-r">Blocks Behind</th>
-                      <th class="ta-r" style="width: 110px;">BitGo URL</th>
-                      <th class="ta-r" style="width:170px;">Block Explorer URL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- dynamically populated -->
-                  </tbody>
-                </table>
+              <table id="js-statusTable" class="table maxheight">
+                <thead class="thead-default">
+                  <tr style="text-align: center;">
+                    <th>Coin</th>
+                    <th>Prod</th>
+                    <th>Test</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- dynamically populated -->
+                </tbody>
+              </table>
 
-              </div> <!-- end cardbody -->
-            </div> <!-- end card -->
-          </div> <!-- end col -->
-        </div> <!-- end row -->
-      </div> <!-- end container -->
-    </div>
-    <!-- end wrapper -->
+            </div> <!-- end cardbody -->
+          </div> <!-- end card -->
+        </div> <!-- end container -->
+      </div> <!-- end row col -->
+    </div> <!-- end wrapper -->
 
   </body>
 </html>
