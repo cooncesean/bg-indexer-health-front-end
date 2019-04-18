@@ -1,108 +1,80 @@
-function setEnvironmentStyle(difference, envData, td) {
-  if (!envData.status && envData.network === 'MainNet') {
-    // this is really bad, sound very many alarms
-    td.css('background',  '#961d0f');
-    return;
-  }
-
-  if (isNaN(difference)) {
-    return;
-  }
-
-  var color = '#e2ffe2';
-  if (difference < -2 && difference > -10) {
-    color = 'khaki';
-  } else if (difference <= -10) {
-    color = 'mistyrose';
-  }
-  td.css('background',  color);
-}
-
-function setHeightDifferenceStyle(difference, span) {
-  if (isNaN(difference)) {
-    return;
-  }
-
-  var color = 'green';
-  if (difference < -2 && difference > -10) {
-    color = 'orange';
-  } else if (difference <= -10) {
-    color = 'red';
-  }
-  span.css('color', color);
-}
-
+/* Build and append the "environment data" cell.
+ *
+ * Constructs and returns a table cell for each coin and each environment that
+ * specifies whether or not the coin + environment are at chainhead (compared)
+ * to a public block explorer or behind and by how much.
+ */
 function appendEnvironmentCell(envData, tr) {
   console.log('append td: ' + envData.bgURL);
-  //var statusGoodIcon = $('<i style="font-size: 64px !important; width: 50; height: 50;" class="mdi mdi-checkbox-marked-circle"></i>');
-  //var statusBadIcon = $('<i style="font-size: 64px !important; width: 50; height: 50;" class="mdi mdi-alert-circle"></i>');
 
-  var td = $('<td style="text-align: center;">');
+  // Create the table cell to be appended to the passed tr well as the container
+  // div (which all other divs will be nested) and other divs required for
+  // rendering.
+  var td = $('<td style="border:1px solid #dee2e6;padding:0px;">');
+  var containerDiv = $('<div>');
+  var blockDifferenceDiv = $('<div style="width:100%; font-size:40px; font-weight:bold; text-align:center; padding-top:2px; line-height:55px;">');
+  var latestBlockDiv = $('<div style="width:100%; text-align:center; font-size:18px; color:#555; padding-bottom:5px;">');
 
-
-  function makeRow(content) {
-    var row = $('<div style="width: 100;">');
-    row.append(content);
-    td.append(row);
-  }
-
-  function makeLabel(content) {
-    var labelSpan = $('<span style="font-size: 14px; color: grey;">'+content+'</span>');
-    makeRow(labelSpan);
-  }
-
-  // For each coin, there are three networks (MainNet + TestNet + Dev); The
-  // app should show a table cell for each env, indicating it's status
-  //var statusIcon = !!envData.status ? statusGoodIcon : statusBadIcon;
-  //makeRow(statusIcon)
-
-  var referenceBlock = envData.referenceBlock || 'N/A';
-  var latestBlock = envData.latestBlock || 'N/A';
+  // Calculate difference between our indexers and public block explorers
+  var referenceBlock = envData.referenceBlock || 'N/A'; // This is the most recently indexed public block
+  var latestBlock = envData.latestBlock || 'N/A'; // This is BitGo's most recently indexed block
   var difference = latestBlock - referenceBlock;
+
+  // Use the calculated difference to style elements
+  var backgroundColor = '#fff';
+  var textColor = '#555';
+  // If difference is a string, background is white
   if (isNaN(difference)) {
-    difference = 'N/A';
+    difference = '-';
   }
-  makeLabel('Difference');
-  var blockDifference = $('<span style="font-size: 60px; font-weight: bolder;">'+difference+'</span>');
-  setHeightDifferenceStyle(difference, blockDifference);
-  makeRow(blockDifference);
+  // If difference is positive or neglible, background is green
+  else if (difference > -8) {
+    backgroundColor = '#e2ffe2';
+    textColor = 'green';
+  }
+  // If difference is more than 10 blocks, background is red
+  else if (difference <= -8) {
+    backgroundColor = 'mistyrose';
+    textColor = 'red';
+  }
+  td.css('background',  backgroundColor);
 
-  makeLabel('Indexer / Blockchain');
-  var latestBlockSpan = $('<span style="font-size: 32px; font-weight: bold;">'+latestBlock+' / '+referenceBlock+'</span>');
-  makeRow(latestBlockSpan);
+  // Style the blocksBehindDiv
+  blockDifferenceDiv.css('color', textColor);
+  blockDifferenceDiv.html(difference);
 
-  var urlContainer = $('<div>');
-  var bitgoUrl = $('<span style="font-size: 12px; padding-right: 1em;"><a href="'+envData.bgURL+'">BitGo</a></span>');
-  var publicUrl = $('<span style="font-size: 12px; padding-left: 1em;"><a href="'+envData.publicURL+'">Explorer</a></span>');
-  urlContainer.append(bitgoUrl);
-  urlContainer.append(publicUrl);
-  makeRow(urlContainer);
+  // Populate the latestBlockDiv
+  latestBlockDiv.html('<a href="'+envData.bgURL+'">' +latestBlock + '</a> <span style="font-weight:bold; color:#000">/</span> <a href="'+envData.publicURL+'">'+ referenceBlock + '</a>');
 
-  setEnvironmentStyle(difference, envData, td);
+  // Append the divs to the container div and the container to the td
+  containerDiv.append(blockDifferenceDiv);
+  containerDiv.append(latestBlockDiv);
+  td.append(containerDiv);
   tr.append(td);
 }
 
+/* Build and append the "coin" cell.
+ *
+ * Constructs and returns a table cell with the coin logo + meta data for
+ * each coin defined in the json file.
+ */
 function appendCoinCell(key, coinData, tr) {
-  var style = 'width: 125px; vertical-align: middle; background: white !important; text-align: center;';
-  var image = $('<img src="'+coinData.icon+'" width="80em" height="80em" style="margin-top: 1em;" />');
-  var td = $('<td style="'+style+'">');
-  td.append($('<b style="font-size: 20px; display: block;">'+key+'</b>'))
+  var image = $('<img src="'+coinData.icon+'" width="60em" height="60em" />');
+  var td = $('<td style="width: 125px; vertical-align: middle; background: white !important; text-align: center;">');
+  // td.append($('<b style="font-size: 20px; display: block;">'+key+'</b>'));
   td.append(image);
   tr.append(td);
 }
 
+/* Build and append table rows to the master table using coin data passed
+ * in from the calling fcn.
+ */
 function appendTableRow(key, coinData) {
   console.log('append tr');
   // Build the tr and append tds to it
   var tr = $('<tr>');
   appendCoinCell(key, coinData, tr);
 
-  var tableHeadRow = $('table thead tr');
-  if (coinData.environments.length === 3 && tableHeadRow.children().length !== 4) {
-    console.log('append dev to table header');
-    var devHeader = $('<th>Dev</th>');
-    tableHeadRow.append(devHeader);
-  }
   // Iterate over each environment in the data dict and create table
   // cells to be appended to the table row
   $.each(coinData.environments, function(index, environmentData) {
@@ -113,7 +85,11 @@ function appendTableRow(key, coinData) {
   $('#js-statusTable').append(tr);
 }
 
-// Parse indexer state data from s3
+/* Parse indexer state data from s3.
+ *
+ * This function is invoked after json data regarding indexer status is
+ * fetched from s3. It uses this data to construct readable table.
+ */
 function handleIndexerStateDataFromS3(data){
   console.log('handle');
 
@@ -128,9 +104,10 @@ function handleIndexerStateDataFromS3(data){
   $.each(data.indexers, appendTableRow);
 }
 
-// On domready, fetch and parse the json file that contains the
-// status of our indexers and use it to render a useful table for
-// the user.
+/* On domready, fetch and parse the json file that contains the
+ * status of our indexers and use it to render a table of results
+ * for the user.
+ */
 url = "https://s3-us-west-2.amazonaws.com/bitgo-indexer-health/latest.json";
 $(function() {
   console.log('load');
