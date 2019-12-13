@@ -61,8 +61,8 @@ function appendEnvironmentCell(envData, tr) {
 function appendCoinCell(key, coinData, tr) {
   var image = $('<img src="'+coinData.icon+'" width="60em" height="60em" />');
   var td = $('<td style="width: 125px; vertical-align: middle; background: white !important; text-align: center;">');
-  // td.append($('<b style="font-size: 20px; display: block;">'+key+'</b>'));
   td.append(image);
+  td.append($('<b style="font-size: 17px; display: block; margin-top:3px;color:#666;">'+key+'</b>'));
   tr.append(td);
 }
 
